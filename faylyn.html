@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Faylyn — Commission & Payment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#07090f;
+      --surface:rgba(10,14,22,.94);
+      --surface-2:rgba(14,20,32,.78);
+      --border:rgba(255,255,255,.07);
+      --border-strong:rgba(92,162,226,.34);
+      --text:#e6eef9;
+      --muted:#8093ad;
+      --soft:#9fb3ca;
+      --accent:#5da6e8;
+      --accent-2:#7fc3ff;
+      --good:#2fd18c;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+      --r-xl:28px;
+      --r-lg:20px;
+      --r-md:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(800px 500px at 12% 8%, rgba(77,159,214,.14), transparent 60%),
+        radial-gradient(700px 450px at 88% 22%, rgba(51,134,196,.12), transparent 58%),
+        linear-gradient(180deg,#05070c 0%, #070b12 42%, #05070c 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+    body::before, body::after{
+      content:"";
+      position:fixed;
+      pointer-events:none;
+      z-index:0;
+      border-radius:999px;
+      filter:blur(40px);
+      opacity:.9;
+    }
+    body::before{width:320px;height:320px;left:-110px;top:-110px;background:rgba(74,144,226,.12)}
+    body::after{width:280px;height:280px;right:-90px;bottom:-90px;background:rgba(79,198,255,.08)}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+
+    .app{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:460px;
+      min-height:100vh;
+      margin:0 auto;
+      padding:18px 18px 28px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      margin-bottom:22px;
+      padding-top:6px;
+      animation:rise .7s ease both;
+      text-align:center;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+      width:100%;
+      text-align:center;
+      padding:14px 12px 10px;
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.05);
+      box-shadow:inset 0 0 0 1px rgba(93,166,232,.04);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px)
+    }
+    .brand-line{
+     width:120px;
+     opacity:0.7;
+     height:1px;
+     margin:4px auto 12px;
+     background:linear-gradient(
+         90deg,
+         transparent,
+         rgba(93,166,232,.5),
+         transparent
+        );
+    }
+    .brand-mark{
+      margin-bottom:2px;
+      width:92px;
+      height:92px;
+      margin:0 auto 8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .brand-mark{
+      position:relative;
+    }
+
+    .brand-mark::before{
+      content:"";
+      position:absolute;
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      background:rgba(93,166,232,.18);
+      filter:blur(30px);
+      z-index:-1;
+    }
+    .brand-mark img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+      filter:
+        drop-shadow(0 0 12px rgba(93,166,232,.18))
+        drop-shadow(0 8px 20px rgba(93,166,232,.15));
+    }
+    .brand-mark img{
+     animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float{
+     0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}
+    }
+    .brand-meta{
+      min-width:0;
+      flex:1 1 auto;
+      max-width:none;
+      width:100%
+    }
+    .eyebrow{
+      font-size:11px;
+      letter-spacing:6px;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
+      opacity:.92
+    }
+    .brand-name{
+      font-size:44px;
+      line-height:1;
+      letter-spacing:1px;
+      font-family:"Montserrat",sans-serif;
+      font-weight:900;
+      text-align:center;
+      background:linear-gradient(135deg,#f8fbff 15%, #91c8f2 60%, #d9f0ff 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-shadow:0 0 28px rgba(127,195,255,.14)
+    }
+    .brand-sub{
+      margin-top:8px;
+      color:#a8bdd4;
+      font-size:15px;
+      font-weight:500;
+      line-height:1.55;
+      max-width:330px;
+      margin-inline:auto;
+      overflow-wrap:anywhere
+    }
+    .status-badge{
+      flex:0 0 auto;
+      display:inline-flex;align-items:center;gap:7px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(0,0,0,.33);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-size:11px;color:var(--good);white-space:nowrap;
+      margin-top:4px;
+    }
+    .status-dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 12px rgba(47,209,140,.75)}
+
+    .hero, .section, .footer{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--r-xl);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+    }
+    .hero{
+      padding:18px;margin-bottom:14px;animation:rise .8s ease .05s both
+    }
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    .hero-copy h1{
+      font-size:24px;line-height:1.05;letter-spacing:-.9px;margin-bottom:10px
+    }
+    .hero-copy p{color:var(--soft);font-size:13px;line-height:1.7}
+    .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .pill{
+      padding:8px 11px;border-radius:999px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.06);
+      color:var(--soft);font-size:11px;font-weight:600
+    }
+    .pill.good{color:#b8ffd9;border-color:rgba(47,209,140,.18);background:rgba(47,209,140,.08)}
+    .pill.accent{color:#cae8ff;border-color:rgba(93,166,232,.2);background:rgba(93,166,232,.08)}
+    .action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn{
+      min-height:48px;padding:0 16px;border-radius:16px;border:1px solid transparent;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease;
+      user-select:none;font-weight:700
+    }
+    .btn:active{transform:scale(.97)}
+    .btn.primary{
+      background:linear-gradient(180deg,#cfe6fb 0%, #9ec7e9 100%);
+      color:#08111b;box-shadow:0 12px 28px rgba(93,166,232,.18)
+    }
+    .btn.secondary{
+      background:rgba(255,255,255,.04);color:var(--text);border-color:rgba(255,255,255,.08)
+    }
+    .btn:hover{transform:translateY(-2px)}
+
+    .section{
+      padding:16px;margin-bottom:14px;animation:rise .8s ease both
+    }
+    .section h2{
+      font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+      margin-bottom:12px;display:flex;align-items:center;gap:10px
+    }
+    .section h2::after{
+      content:"";flex:1;height:1px;background:linear-gradient(90deg, rgba(255,255,255,.08), transparent)
+    }
+
+    .section-lead{
+      color:var(--soft);
+      font-size:12px;
+      line-height:1.7;
+      margin-bottom:12px
+    }
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px
+    }
+    .portfolio-card{
+      border-radius:20px;
+      overflow:hidden;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      box-shadow:0 12px 30px rgba(0,0,0,.18);
+      display:flex;
+      flex-direction:column
+    }
+    .portfolio-media{
+      position:relative;
+      aspect-ratio:1/1;
+      overflow:hidden;
+      background:linear-gradient(135deg, rgba(93,166,232,.18), rgba(10,15,24,.92))
+    }
+    .portfolio-media img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      z-index:1
+    }
+    .portfolio-fallback{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:flex-start;
+      gap:6px;
+      background:
+        radial-gradient(220px 180px at 82% 18%, rgba(127,195,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(93,166,232,.28) 0%, rgba(10,15,24,.88) 78%)
+    }
+    .portfolio-fallback-chip{
+      width:max-content;
+      padding:5px 8px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      color:#cae8ff;
+      background:rgba(93,166,232,.14);
+      border:1px solid rgba(93,166,232,.18)
+    }
+    .portfolio-fallback strong{
+      display:block;
+      font-size:13px;
+      line-height:1.2;
+      letter-spacing:-.35px
+    }
+    .portfolio-fallback span{
+      display:block;
+      color:var(--soft);
+      font-size:10px;
+      line-height:1.45;
+      max-width:180px
+    }
+    .portfolio-body{
+      padding:12px 12px 14px;
+      display:grid;
+      gap:6px
+    }
+    .portfolio-chip{
+      display:inline-flex;
+      width:max-content;
+      align-items:center;
+      padding:5px 8px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      color:#cae8ff;
+      background:rgba(93,166,232,.1);
+      border:1px solid rgba(93,166,232,.18)
+    }
+    .portfolio-body h3{
+      font-size:14px;
+      line-height:1.2;
+      letter-spacing:-.35px;
+      font-weight:800;
+      min-height:0
+    }
+    .portfolio-body p{
+      color:var(--soft);
+      font-size:11px;
+      line-height:1.5;
+      min-height:0
+    }
+
+.services{display:grid;gap:10px}
+    .service-card{
+      display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;
+      background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)
+    }
+    .service-ico{
+      width:40px;height:40px;border-radius:14px;display:grid;place-items:center;
+      background:rgba(93,166,232,.12);border:1px solid rgba(93,166,232,.18);color:var(--accent-2);flex:0 0 auto;font-size:18px
+    }
+    .service-card h3{font-size:14px;margin-bottom:4px}
+    .service-card p{color:var(--soft);font-size:12px;line-height:1.55}
+
+    .pricing-grid{display:grid;gap:10px}
+    .price-card{
+      border-radius:20px;padding:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);display:grid;gap:10px
+    }
+    .price-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .price-name{font-size:16px;font-weight:800;letter-spacing:-.4px}
+    .price-tag{
+      font-size:10px;padding:6px 8px;border-radius:999px;color:#bfe5ff;background:rgba(93,166,232,.1);border:1px solid rgba(93,166,232,.18);white-space:nowrap;font-weight:700
+    }
+    .price-amount{font-size:28px;font-weight:900;letter-spacing:-1px}
+    .price-note{color:var(--soft);font-size:12px;line-height:1.55}
+    .price-features{display:grid;gap:8px;margin-top:2px}
+    .feat{
+      display:flex;gap:8px;align-items:flex-start;color:var(--soft);font-size:12px;line-height:1.5
+    }
+    .feat::before{content:"•";color:var(--accent-2);margin-top:-1px}
+
+    .pay-tabs{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+      margin-bottom:12px;
+      align-items:stretch
+    }
+    .tab{
+      min-height:44px;
+      padding:0 8px;
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      color:var(--soft);
+      border:1px solid rgba(255,255,255,.06);
+      text-align:center;
+      font-size:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.18s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      line-height:1;
+    }
+    .tab.active{
+      background:rgba(93,166,232,.12);color:#d8efff;border-color:rgba(93,166,232,.22);box-shadow:0 10px 26px rgba(93,166,232,.08)
+    }
+
+    .pay-panel{
+      display:none;padding:14px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)
+    }
+    .pay-panel.active{display:block;animation:fadeIn .22s ease both}
+    .pay-title{font-size:16px;font-weight:800;margin-bottom:-5px}
+    .pay-desc{color:var(--soft);font-size:12px;line-height:1.6}
+
+    .qris-card{
+      display:grid;gap:12px
+    }
+    .qris-frame{
+      border-radius:20px;padding:14px;
+      background:linear-gradient(180deg, rgba(93,166,232,.14), rgba(255,255,255,.03));
+      border:1px dashed rgba(127,195,255,.25);
+      display:grid;place-items:center;min-height:210px;text-align:center;position:relative;overflow:hidden
+    }
+    .contact-first-card{
+      width:100%;min-height:170px;border-radius:20px;padding:18px;
+      background:linear-gradient(180deg, rgba(93,166,232,.16), rgba(255,255,255,.03)), rgba(255,255,255,.03);
+      border:1px solid rgba(127,195,255,.18);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;
+      box-shadow:inset 0 0 0 1px rgba(93,166,232,.05)
+    }
+    .contact-first-icon{
+      width:58px;height:58px;border-radius:20px;display:grid;place-items:center;
+      background:rgba(93,166,232,.12);border:1px solid rgba(127,195,255,.18);color:var(--accent-2);
+      font-size:24px;font-weight:800;box-shadow:0 10px 30px rgba(93,166,232,.1)
+    }
+    .contact-first-title{font-size:18px;font-weight:900;letter-spacing:-.6px;color:var(--text)}
+    .contact-first-text{color:var(--soft);font-size:12px;line-height:1.7;max-width:280px}
+    .contact-first-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:4px}
+
+    .pay-note{display:none}
+    .pay-note-title{color:var(--text);font-size:13px;font-weight:800;letter-spacing:-.2px}
+    .pay-note-text{color:var(--soft);font-size:12px;line-height:1.6}
+
+    .copy-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .copy-box{
+      flex:1 1 220px;min-height:48px;padding:0 14px;border-radius:14px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.18);color:var(--text);display:flex;align-items:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:13px
+    }
+    .copy-btn{
+      min-height:48px;padding:0 14px;border:0;border-radius:14px;background:linear-gradient(180deg,#cfe6fb 0%,#9ec7e9 100%);color:#08111b;font-weight:800;cursor:pointer
+    }
+    .copy-btn:active{transform:scale(.98)}
+    .hero-panel{
+      display:grid;gap:12px;padding:14px;border-radius:var(--r-lg);background:var(--surface2);border:1px solid rgba(255,255,255,.05)
+    }
+    .hero-panel .stat{
+      padding:13px 14px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05)
+    }
+    .stat-label{
+      display:block;color:var(--muted);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px
+    }
+    .stat-value{font-size:16px;font-weight:800;letter-spacing:-.4px}
+    .stat-desc{margin-top:6px;color:var(--soft);font-size:12px;line-height:1.5}
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px
+    }
+    .contact-card{
+      padding:14px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+      display:flex;flex-direction:column;gap:8px;min-height:138px;justify-content:space-between
+    }
+    .contact-head{display:flex;align-items:center;gap:10px;min-width:0}
+    .contact-ico{
+      width:40px;height:40px;border-radius:14px;display:grid;place-items:center;color:#fff;
+      background:rgba(93,166,232,.14);border:1px solid rgba(93,166,232,.18);flex:0 0 auto;font-size:14px;font-weight:800
+    }
+    .contact-card h3{font-size:14px}
+    .contact-card p{color:var(--soft);font-size:11px;line-height:1.45;word-break:break-word;min-height:2.6em}
+    .mini-btn{
+      min-height:40px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text);
+      display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;cursor:pointer;width:100%;white-space:nowrap;padding:0 10px
+    }
+
+    .faq{display:grid;gap:10px}
+    .faq-item{border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);overflow:hidden}
+    .faq-q{
+      width:100%;background:transparent;color:var(--text);border:0;padding:14px;text-align:left;display:flex;justify-content:space-between;gap:12px;
+      cursor:pointer;font-weight:700;font-size:13px
+    }
+    .faq-a{
+      max-height:0;overflow:hidden;transition:max-height .26s ease;color:var(--soft);padding:0 14px;font-size:12px;line-height:1.7
+    }
+    .faq-item.open .faq-a{max-height:180px;padding-bottom:14px}
+
+    .footer{
+      padding:16px;margin-top:2px;margin-bottom:24px
+    }
+    .footer-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+    .footer-note{color:var(--soft);font-size:12px;line-height:1.6;max-width:310px}
+    .footer-badge{
+      padding:8px 12px;border-radius:999px;font-size:11px;font-weight:800;border:1px solid rgba(47,209,140,.18);color:#b8ffd9;background:rgba(47,209,140,.08);white-space:nowrap
+    }
+
+    .toast{
+      position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(20px);opacity:0;z-index:30;
+      min-width:min(420px, calc(100vw - 28px));background:rgba(12,17,28,.95);color:var(--text);border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);transition:.22s ease;display:flex;align-items:center;gap:10px;pointer-events:none
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .toast-ico{
+      width:30px;height:30px;border-radius:12px;display:grid;place-items:center;background:rgba(93,166,232,.12);color:var(--accent-2);flex:0 0 auto
+    }
+    .toast strong{display:block;font-size:13px;margin-bottom:2px}
+    .toast span{display:block;font-size:12px;color:var(--soft)}
+
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    @media (min-width:760px){
+      .app{max-width:520px}
+      .brand-name{font-size:40px}
+      .hero-copy h1{font-size:28px}
+      .portfolio-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
+
+    @media (max-width:420px){
+      .app{padding:14px 14px 24px}
+      .brand-mark{width:50px;height:50px;border-radius:18px;font-size:20px}
+      .brand-name{font-size:34px}
+      .brand-meta{max-width:none}
+      .status-badge{font-size:10px;padding:7px 10px}
+      .portfolio-grid{grid-template-columns:1fr 1fr}
+      .contact-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .contact-card{padding:12px;min-height:124px}
+      .contact-card h3{font-size:12px}
+      .contact-card p{font-size:10px}
+      .pay-tabs{grid-template-columns:1fr}
+      .tab{min-height:46px}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-meta">
+          <div class="eyebrow">Commission Service</div>
+          <div class="brand-line"></div>
+          <div class="brand-mark">
+            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/assets@main/logo.webp" alt="faylyn logo">
+          </div>
+          <div class="brand-name">Faylyn</div>
+          <div class="brand-sub">Murah dan tentunya tidak mengecewakan</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Sedia berbagai jenis edit</h1>
+          <p>Open setiap hari dengan waktu pengerjaan yang secepat mungkin, disini saya menggunakan style edit glassmorphin yang elegan dan mewah yang tentunya kalian bisa request edit sendiri jika kurang suka terhadap template atau style saya.</p>
+          <div class="pill-row">
+            <span class="pill good">Open Order</span>
+            <span class="pill accent">Fast Reply</span>
+            <span class="pill">Mobile Friendly</span>
+          </div>
+
+          <div class="action-row">
+            <a class="btn primary" href="#payment">Order / Pay Now</a>
+            <a class="btn secondary" href="#portfolio">View Portofolio</a>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="stat">
+            <span class="stat-label">Payment</span>
+            <div class="stat-value">Dana • GoPay • QRIS</div>
+            <div class="stat-desc">List payment yang ada di Faylyn</div>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Note</span>
+            <div class="stat-value">QRIS by Amount</div>
+            <div class="stat-desc">Metode ini harus contact saya terlebih dahulu</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section" id="portfolio">
+      <h2>Portofolio</h2>
+      <div class="section-lead">Beberapa hasil/contoh Edit Foto di Faylyn, untuk edit video bisa minta ke contact saya langsung aja yaa.</div>
+      <div class="portfolio-grid">
+        <figure class="portfolio-card">
+          <div class="portfolio-media">
+            <div class="portfolio-fallback">
+              <span class="portfolio-fallback-chip">Preview</span>
+              <strong>Masukkan gambar</strong>
+              <span>Ganti src dengan link gambar hasil jadi.</span>
+            </div>
+            <img alt="Before After Edit Foto" loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://placehold.co/900x675/111827/9ec7e9/png?text=Before+%E2%86%92+After"/>
+          </div>
+          <figcaption class="portfolio-body">
+            <h3>Poster Promosi</h3>
+            <p>Cocok untuk produk, event, dan konten sosial media.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="portfolio-card">
+          <div class="portfolio-media">
+            <div class="portfolio-fallback">
+              <span class="portfolio-fallback-chip">Preview</span>
+              <strong>Masukkan gambar</strong>
+              <span>Ganti src dengan link gambar hasil jadi.</span>
+            </div>
+            <img alt="Poster Logo Edit Foto" loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://placehold.co/900x675/101827/9ec7e9/png?text=Poster+%2F+Logo"/>
+          </div>
+          <figcaption class="portfolio-body">
+            <h3>Logo Branding</h3>
+            <p>Pas untuk branding media sosial maupun website.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="portfolio-card">
+          <div class="portfolio-media">
+            <div class="portfolio-fallback">
+              <span class="portfolio-fallback-chip">Preview</span>
+              <strong>Masukkan gambar</strong>
+              <span>Ganti src dengan link gambar hasil jadi.</span>
+            </div>
+            <img alt="Gameplay Edit Video" loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://placehold.co/900x675/0f172a/93c5fd/png?text=Gameplay"/>
+          </div>
+          <figcaption class="portfolio-body">
+            <h3>Banner Media</h3>
+            <p>Cocok untuk YouTube, TikTok, Discord, dan keperluan promosi.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="portfolio-card">
+          <div class="portfolio-media">
+            <div class="portfolio-fallback">
+              <span class="portfolio-fallback-chip">Preview</span>
+              <strong>Masukkan gambar</strong>
+              <span>Ganti src dengan link gambar hasil jadi.</span>
+            </div>
+            <img alt="Iklan Montage Edit Video" loading="lazy" decoding="async" onerror="this.style.display='none'" src="https://placehold.co/900x675/111827/a7d8ff/png?text=Iklan+%2F+Montage"/>
+          </div>
+          <figcaption class="portfolio-body">
+            <h3>Spek Akun Game</h3>
+            <p>Mengubah screenshot akun game jadi showcase yang lebih menarik.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Services</h2>
+      <div class="services">
+        <div class="service-card">
+          <div class="service-ico">✦</div>
+          <div>
+            <h3>Edit Foto</h3>
+            <p>Faylyn menyediakan jasa Edit Foto seperti banner, foto profile, poster, logo, edit spek akun game mu, dan lainnya</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-ico">✧</div>
+          <div>
+            <h3>Edit Video</h3>
+            <p>Faylyn juga menyediakan jasa edit video loh!! seperti edit gameplay kamu, animasi logo, manip/gfx anime, dan iklan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Pricing</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-top">
+            <div>
+              <div class="price-name">Edit Foto</div>
+              <div class="price-note">Harga per item. Cocok untuk edit simpel sampai kebutuhan konten.</div>
+            </div>
+            <div class="price-tag">Per Item</div>
+          </div>
+          <div class="price-amount">Rp 2.000+</div>
+          <div class="price-features">
+            <div class="feat">Logo — Rp 4.000</div>
+            <div class="feat">Poster — Rp 7.000</div>
+            <div class="feat">Spek Akun Game — Rp 2.000+</div>
+            <div class="feat">Banner — Rp 3.000</div>
+            <div class="feat">Bisa request style sesuai kebutuhan</div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-top">
+            <div>
+              <div class="price-name">Edit Video</div>
+              <div class="price-note">Harga per item. Untuk edit singkat, promosi, atau gameplay.</div>
+            </div>
+            <div class="price-tag">Per Item</div>
+          </div>
+          <div class="price-amount">Rp 4.000+</div>
+          <div class="price-features">
+            <div class="feat">Iklan — Rp 10.000</div>
+            <div class="feat">Gameplay — Rp 4.000</div>
+            <div class="feat">Gfx/manip Anime — Rp 5.000</div>
+            <div class="feat">Animasi Logo — Rp 7.000</div>
+            <div class="feat">Bisa diskusi dulu sebelum order</div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-top">
+            <div>
+              <div class="price-name">Custom</div>
+              <div class="price-note">Kalau butuh edit di luar daftar, tinggal chat dulu.</div>
+            </div>
+            <div class="price-tag">Contact</div>
+          </div>
+          <div class="price-amount">Chat aja urusan harga</div>
+          <div class="price-features">
+            <div class="feat">Harga menyesuaikan tingkat kerumitan</div>
+            <div class="feat">Bisa request style sendiri</div>
+            <div class="feat">Cocok untuk project khusus</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="payment">
+      <h2>Payment</h2>
+      <div class="pay-tabs">
+        <div class="tab" data-tab="qris">QRIS</div>
+        <div class="tab" data-tab="dana">Dana</div>
+        <div class="tab" data-tab="gopay">GoPay</div>
+      </div>
+
+      <div class="pay-panel" id="panel-qris">
+        <div class="qris-card">
+          <div class="pay-title">QRIS Payment</div>
+          <div class="pay-desc">Contact dulu biar total & QRIS pas.</div>
+          <div class="qris-frame">
+            <div class="contact-first-card">
+              <div class="contact-first-icon">✦</div>
+              <div class="contact-first-title">Contact First</div>
+              <div class="contact-first-text">Hubungi aku dulu lewat WhatsApp, Telegram, atau TikTok untuk total final dan QRIS yang pas.</div>
+              <div class="contact-first-pills">
+                <span class="pill accent">WhatsApp</span>
+                <span class="pill accent">Telegram</span>
+                <span class="pill accent">TikTok</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pay-panel" id="panel-dana">
+        <div class="pay-title">Dana</div>
+        <div class="pay-desc">Transfer melalui nomor dana</div>
+        <div class="copy-row">
+          <div class="copy-box" data-copy="0831-8805-0672">0831-8805-0672</div>
+          <button class="copy-btn" data-target="0831-8805-0672">Copy</button>
+        </div>
+      </div>
+
+      <div class="pay-panel" id="panel-gopay">
+        <div class="pay-title">GoPay</div>
+        <div class="pay-desc">Transfer melalui nomor gopay</div>
+        <div class="copy-row">
+          <div class="copy-box" data-copy="0831-8805-0672">0831-8805-0672</div>
+          <button class="copy-btn" data-target="0831-8805-0672">Copy</button>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <h2>Contacts</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-head">
+            <div><h3>WhatsApp</h3><p>Chat cepat lewat whatsapp.</p></div>
+          </div>
+          <a class="mini-btn" href="https://wa.me/6283188050672" target="_blank" rel="noopener">Open</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-head">
+            <div><h3>Telegram</h3><p>Chat kalau aku off di whatsapp.</p></div>
+          </div>
+          <a class="mini-btn" href="https://t.me/Li_Ziya1" target="_blank" rel="noopener">Open</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-head">
+            <div><h3>TikTok</h3><p>Lihat update terbaru di TikTok.</p></div>
+          </div>
+          <a class="mini-btn" href="https://www.tiktok.com/@f4ylyn" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q" type="button">Proses nya berapa lama? <span>+</span></button>
+          <div class="faq-a">Tergantung antrian, tapi aku usahain secepat mungkin</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Bisa request pake style sendiri ngga?<span>+</span></button>
+          <div class="faq-a">Bisa banget, disini bebas mau pake style apa aja asal masih sesuai kemampuan aku</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Kalau nggak cocok boleh revisi? <span>+</span></button>
+          <div class="faq-a">Boleh dong, disini bebas revisi sampai puas tapi jangan sengaja revisi karena penasaran doang ya!!</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-row">
+        <div class="footer-note">
+          Contact me first via WhatsApp, Telegram, or TikTok. QRIS will be sent after the amount is confirmed.
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">
+    <div class="toast-ico">✓</div>
+    <div>
+      <strong id="toastTitle">Copied</strong>
+      <span id="toastText">Berhasil di salin!!</span>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = {
+      qris: document.getElementById('panel-qris'),
+      dana: document.getElementById('panel-dana'),
+      gopay: document.getElementById('panel-gopay')
+    };
+
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastText = document.getElementById('toastText');
+    let toastTimer;
+
+    function showToast(title, text) {
+      toastTitle.textContent = title;
+      toastText.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        Object.values(panels).forEach(panel => panel.classList.remove('active'));
+        panels[tab.dataset.tab].classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const value = btn.dataset.target || '';
+        try {
+          await navigator.clipboard.writeText(value);
+          showToast('Copied', value);
+        } catch {
+          showToast('Failed', 'Clipboard tidak tersedia di browser ini');
+        }
+      });
+    });
+
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        item.classList.toggle('open');
+        btn.querySelector('span').textContent = item.classList.contains('open') ? '–' : '+';
+      });
+    });
+  </script>
+</body>
+</html>
