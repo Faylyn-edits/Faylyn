@@ -531,7 +531,10 @@
     }
     .feat::before{content:"•";color:var(--accent-2);margin-top:-1px}
 
-
+    .pay-content{
+      display:grid;
+      gap:10px;
+    }
     .pay-tabs{
       position:relative;
       display:grid;
@@ -1360,6 +1363,7 @@
         </div>
 
         <div class="pay-panel" id="panel-dana" aria-hidden="true">
+        <div class="pay-content">
           <div class="pay-title">Dana</div>
           <div class="pay-desc">Transfer melalui nomor dana</div>
           <div class="copy-row">
@@ -1367,8 +1371,10 @@
             <button class="copy-btn" data-target="0831-8805-0672">Copy</button>
           </div>
         </div>
+      </div>
 
         <div class="pay-panel" id="panel-gopay" aria-hidden="true">
+        <div class="pay-content">
           <div class="pay-title">GoPay</div>
           <div class="pay-desc">Transfer melalui nomor gopay</div>
           <div class="copy-row">
@@ -1376,7 +1382,7 @@
             <button class="copy-btn" data-target="0831-8805-0672">Copy</button>
           </div>
         </div>
-      </div>
+        </div>
     </section>
 
 
