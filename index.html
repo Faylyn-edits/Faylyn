@@ -392,6 +392,7 @@
       display:flex;
       flex-direction:column;
       transition:transform .18s ease, border-color .22s ease, box-shadow .22s ease;
+      cursor:zoom-in;
     }
     .portfolio-card::before,
     .service-card::before,
@@ -428,7 +429,108 @@
       display:block;
       z-index:1
     }
-    .portfolio-fallback{
+    
+.portfolio-card:focus-visible{
+  outline:2px solid rgba(127,195,255,.4);
+  outline-offset:2px;
+}
+.portfolio-card.zoomed{
+  z-index:60;
+}
+
+.portfolio-viewer{
+  position:fixed;
+  inset:0;
+  z-index:70;
+  display:grid;
+  place-items:center;
+  opacity:0;
+  pointer-events:none;
+  background:rgba(3,5,10,0);
+  transition:opacity .28s ease;
+  isolation:isolate;
+  overflow:hidden;
+  overscroll-behavior:contain;
+  touch-action:none;
+}
+.portfolio-viewer.show{
+  opacity:1;
+  pointer-events:auto;
+}
+.portfolio-viewer-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(3,5,10,0);
+  opacity:0;
+  transition:opacity .56s cubic-bezier(.22,1,.36,1),background-color .56s cubic-bezier(.22,1,.36,1);
+}
+.portfolio-viewer.show .portfolio-viewer-backdrop{
+  opacity:1;
+  background:rgba(3,5,10,.84);
+}
+.portfolio-viewer.closing .portfolio-viewer-backdrop{
+  opacity:0;
+  background:rgba(3,5,10,0);
+}
+.portfolio-viewer-stage{
+  position:relative;
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  opacity:0;
+  transform:scale(.985);
+  transform-origin:center center;
+  transition:opacity .28s ease,transform .50s cubic-bezier(.22,1,.36,1);
+}
+.portfolio-viewer.show .portfolio-viewer-stage{
+  opacity:1;
+  transform:scale(1);
+}
+.portfolio-viewer.closing .portfolio-viewer-stage{
+  opacity:0;
+  transform:scale(.985);
+}
+.portfolio-viewer img{
+  position:fixed;
+  left:var(--viewer-start-left, 50vw);
+  top:var(--viewer-start-top, 50vh);
+  width:var(--viewer-start-width, 0px);
+  height:var(--viewer-start-height, 0px);
+  transform:translate(0,0) scale(1);
+  transform-origin:top left;
+  object-fit:contain;
+  background:#0b0f16;
+  border-radius:var(--viewer-start-radius, 18px);
+  box-shadow:0 14px 38px rgba(0,0,0,.24);
+  opacity:0;
+  transition:
+    left .52s cubic-bezier(.22,1,.36,1),
+    top .52s cubic-bezier(.22,1,.36,1),
+    width .52s cubic-bezier(.22,1,.36,1),
+    height .52s cubic-bezier(.22,1,.36,1),
+    border-radius .48s cubic-bezier(.22,1,.36,1),
+    box-shadow .52s cubic-bezier(.22,1,.36,1),
+    opacity .10s linear,
+    background-color .22s ease;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+  -webkit-user-drag:none;
+  will-change:transform,left,top,width,height;
+}
+.portfolio-viewer.show.animate img{
+  opacity:1;
+  left:var(--viewer-target-left);
+  top:var(--viewer-target-top);
+  width:var(--viewer-target-width);
+  height:var(--viewer-target-height);
+  border-radius:22px;
+  box-shadow:0 28px 80px rgba(0,0,0,.58);
+}
+
+.portfolio-fallback{
+
       position:absolute;
       inset:0;
       z-index:0;
@@ -1132,7 +1234,7 @@
     filter:blur(3px);
   }
 
-  55%{
+  60%{
     opacity:1;
   }
 
@@ -1235,10 +1337,8 @@
           <div class="portfolio-media">
             <div class="portfolio-fallback">
               <span class="portfolio-fallback-chip">Preview</span>
-              <strong>Masukkan gambar</strong>
-              <span>Ganti src dengan link gambar hasil jadi.</span>
             </div>
-            <img src="https://placehold.co/900x675/111827/9ec7e9/png?text=Before+%E2%86%92+After"/>
+            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/portfolio-poster.png" data-full="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/poster.webp" alt="poster faylyn"/>
           </div>
           <figcaption class="portfolio-body">
             <h3>Poster Promosi</h3>
@@ -1250,14 +1350,12 @@
           <div class="portfolio-media">
             <div class="portfolio-fallback">
               <span class="portfolio-fallback-chip">Preview</span>
-              <strong>Masukkan gambar</strong>
-              <span>Ganti src dengan link gambar hasil jadi.</span>
             </div>
-            <img src="https://placehold.co/900x675/101827/9ec7e9/png?text=Poster+%2F+Logo"/>
+            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/portfolio-gfx.png" data-full="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/GFX-miku.webp" alt="gfx faylyn"/>
           </div>
           <figcaption class="portfolio-body">
-            <h3>Logo Branding</h3>
-            <p>Pas untuk branding media sosial maupun website.</p>
+            <h3>GFX Anime</h3>
+            <p>Cocok untuk wallpaper, poster, foto profile, dan showcase anime</p>
           </figcaption>
         </figure>
 
@@ -1265,13 +1363,11 @@
           <div class="portfolio-media">
             <div class="portfolio-fallback">
               <span class="portfolio-fallback-chip">Preview</span>
-              <strong>Masukkan gambar</strong>
-              <span>Ganti src dengan link gambar hasil jadi.</span>
             </div>
-            <img src="https://placehold.co/900x675/0f172a/93c5fd/png?text=Gameplay"/>
+            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/portfolio-banner.png" data-full="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/banner-promo.webp" alt="gfx faylyn"/>
           </div>
           <figcaption class="portfolio-body">
-            <h3>Banner Media</h3>
+            <h3>Banner</h3>
             <p>Cocok untuk YouTube, TikTok, Discord, dan keperluan promosi.</p>
           </figcaption>
         </figure>
@@ -1280,10 +1376,8 @@
           <div class="portfolio-media">
             <div class="portfolio-fallback">
               <span class="portfolio-fallback-chip">Preview</span>
-              <strong>Masukkan gambar</strong>
-              <span>Ganti src dengan link gambar hasil jadi.</span>
             </div>
-            <img src="https://placehold.co/900x675/111827/a7d8ff/png?text=Iklan+%2F+Montage"/>
+            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/portfolio-preset.png" data-full="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/preset-edit.webp" alt="preset faylyn"/>
           </div>
           <figcaption class="portfolio-body">
             <h3>Spek Akun Game</h3>
@@ -1474,6 +1568,14 @@
     </footer>
   </div>
 
+
+  <div class="portfolio-viewer" id="portfolioViewer" aria-hidden="true" aria-label="Pembesar gambar portofolio">
+    <div class="portfolio-viewer-backdrop" id="portfolioViewerBackdrop"></div>
+    <div class="portfolio-viewer-stage">
+      <img id="portfolioViewerImg" alt="">
+    </div>
+  </div>
+
   <div class="toast" id="toast">
     <div class="toast-ico">✓</div>
     <div>
@@ -1491,13 +1593,23 @@
       gopay: document.getElementById('panel-gopay')
     };
 
-    const toast = document.getElementById('toast');
-    const toastTitle = document.getElementById('toastTitle');
-    const toastText = document.getElementById('toastText');
-    let toastTimer;
-    let activeTabKey = 'qris';
-
-    function showToast(title, text) {
+    
+const toast = document.getElementById('toast');
+const toastTitle = document.getElementById('toastTitle');
+const toastText = document.getElementById('toastText');
+const portfolioViewer = document.getElementById('portfolioViewer');
+const portfolioViewerBackdrop = document.getElementById('portfolioViewerBackdrop');
+const portfolioViewerImg = document.getElementById('portfolioViewerImg');
+const portfolioCards = document.querySelectorAll('.portfolio-card');
+let toastTimer;
+let activeTabKey = 'qris';
+let viewerOpen = false;
+let viewerBusy = false;
+let scrollLockY = 0;
+let viewerState = null;
+let viewerCloseTimer = null;
+let viewerSession = 0;
+function showToast(title, text) {
       toastTitle.textContent = title;
       toastText.textContent = text;
       toast.classList.add('show');
@@ -1505,7 +1617,193 @@
       toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
-    function pressPulse(el, pressClass = 'tap-press', pulseClass = 'pulse-on') {
+    
+function getViewportBox() {
+  const vv = window.visualViewport;
+  return {
+    width: vv?.width || window.innerWidth,
+    height: vv?.height || window.innerHeight,
+    left: vv?.offsetLeft || 0,
+    top: vv?.offsetTop || 0
+  };
+}
+
+function getCoverTarget(rect, ratio) {
+  const margin = 18;
+  const vp = getViewportBox();
+  const maxW = Math.min(vp.width - margin * 2, 1280);
+  const maxH = Math.min(vp.height - margin * 2, vp.height * 0.88);
+  let width = maxW;
+  let height = width / ratio;
+
+  if (height > maxH) {
+    height = maxH;
+    width = height * ratio;
+  }
+
+  const left = vp.left + (vp.width - width) / 2;
+  const top = vp.top + (vp.height - height) / 2;
+
+  return { left, top, width, height };
+}
+
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = src;
+    if (img.decode) {
+      img.decode().then(() => resolve(img)).catch(() => {
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+      });
+    } else {
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+    }
+  });
+}
+
+function lockPageScroll() {
+  scrollLockY = window.scrollY || window.pageYOffset || 0;
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.scrollBehavior = 'auto';
+}
+
+function unlockPageScroll() {
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
+  document.documentElement.style.scrollBehavior = '';
+  window.scrollTo(0, scrollLockY);
+}
+
+
+async function openPortfolioViewer(card) {
+  const img = card?.querySelector('.portfolio-media img');
+  if (!img || viewerOpen || viewerBusy) return;
+
+  viewerBusy = true;
+  const session = ++viewerSession;
+
+  clearTimeout(viewerCloseTimer);
+  viewerCloseTimer = null;
+
+  const fullSrc = img.dataset.full || img.src;
+  const altText = img.alt || card.querySelector('.portfolio-body h3')?.textContent || 'Portfolio image';
+  const rect = img.getBoundingClientRect();
+  const radius = getComputedStyle(img).borderRadius || '18px';
+
+  let loadedImg = null;
+  try {
+    loadedImg = await loadImage(fullSrc);
+  } catch {
+    // tetap coba tampilkan kalau preloader gagal
+  }
+
+  if (session !== viewerSession) {
+    viewerBusy = false;
+    return;
+  }
+
+  const ratioSourceWidth = loadedImg?.naturalWidth || img.naturalWidth || rect.width || 1;
+  const ratioSourceHeight = loadedImg?.naturalHeight || img.naturalHeight || rect.height || 1;
+  const ratioRaw = ratioSourceWidth / ratioSourceHeight;
+  const ratio = Number.isFinite(ratioRaw) && ratioRaw > 0 ? ratioRaw : 1;
+  const target = getCoverTarget(rect, ratio);
+
+  viewerState = {
+    left: rect.left,
+    top: rect.top,
+    width: rect.width,
+    height: rect.height,
+    radius,
+    target
+  };
+
+  portfolioViewerImg.alt = altText;
+
+  // Hard reset ke posisi thumbnail agar tidak mewarisi state open sebelumnya.
+  portfolioViewer.classList.remove('animate');
+  portfolioViewerImg.style.transition = 'none';
+  portfolioViewerImg.style.setProperty('--viewer-start-left', `${rect.left}px`);
+  portfolioViewerImg.style.setProperty('--viewer-start-top', `${rect.top}px`);
+  portfolioViewerImg.style.setProperty('--viewer-start-width', `${rect.width}px`);
+  portfolioViewerImg.style.setProperty('--viewer-start-height', `${rect.height}px`);
+  portfolioViewerImg.style.setProperty('--viewer-start-radius', radius);
+
+  portfolioViewerImg.style.setProperty('--viewer-target-left', `${target.left}px`);
+  portfolioViewerImg.style.setProperty('--viewer-target-top', `${target.top}px`);
+  portfolioViewerImg.style.setProperty('--viewer-target-width', `${target.width}px`);
+  portfolioViewerImg.style.setProperty('--viewer-target-height', `${target.height}px`);
+
+  portfolioViewerImg.src = fullSrc;
+  portfolioViewerImg.style.opacity = '0';
+
+  lockPageScroll();
+  card.classList.add('zoomed');
+  portfolioViewer.setAttribute('aria-hidden', 'false');
+  portfolioViewer.classList.remove('closing');
+  portfolioViewer.classList.add('show');
+  viewerOpen = true;
+
+  // Baca posisi awal lebih dulu, baru jalankan expand ke tengah.
+  void portfolioViewerImg.offsetWidth;
+
+  requestAnimationFrame(() => {
+    if (session !== viewerSession) return;
+    portfolioViewerImg.style.transition = '';
+    portfolioViewer.classList.add('animate');
+    portfolioViewerImg.style.opacity = '1';
+  });
+
+  viewerBusy = false;
+}
+
+function closePortfolioViewer() {
+  if ((!viewerOpen && !viewerBusy) || !viewerState) return;
+  clearTimeout(viewerCloseTimer);
+
+  const session = ++viewerSession;
+  const { left, top, width, height, radius } = viewerState;
+  const returnCard = document.querySelector('.portfolio-card.zoomed');
+
+  viewerOpen = false;
+  viewerBusy = false;
+
+  portfolioViewer.classList.remove('animate');
+  portfolioViewer.classList.add('closing');
+
+  portfolioViewerImg.style.setProperty('--viewer-start-left', `${left}px`);
+  portfolioViewerImg.style.setProperty('--viewer-start-top', `${top}px`);
+  portfolioViewerImg.style.setProperty('--viewer-start-width', `${width}px`);
+  portfolioViewerImg.style.setProperty('--viewer-start-height', `${height}px`);
+  portfolioViewerImg.style.setProperty('--viewer-start-radius', radius);
+
+  if (returnCard) returnCard.classList.remove('zoomed');
+
+  const finishClose = () => {
+    if (session !== viewerSession) return;
+    if (!portfolioViewer.classList.contains('show')) return;
+
+    portfolioViewer.classList.remove('show');
+    portfolioViewer.classList.remove('closing');
+    portfolioViewer.setAttribute('aria-hidden', 'true');
+    unlockPageScroll();
+
+    portfolioViewerImg.removeAttribute('src');
+    portfolioViewerImg.style.opacity = '0';
+    viewerState = null;
+    viewerCloseTimer = null;
+  };
+
+  viewerCloseTimer = setTimeout(finishClose, 380);
+}
+
+function pressPulse(el, pressClass = 'tap-press', pulseClass = 'pulse-on') {
+
+
       if (!el) return;
       el.classList.remove(pressClass, pulseClass);
       void el.offsetWidth;
@@ -1600,7 +1898,35 @@
         btn.querySelector('span').textContent = item.classList.contains('open') ? '–' : '+';
       });
     });
+
+    portfolioCards.forEach(card => {
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', `${card.querySelector('.portfolio-body h3')?.textContent || 'Portfolio'} - buka gambar`);
+      card.addEventListener('click', () => {
+        if (viewerOpen) {
+          closePortfolioViewer();
+          return;
+        }
+        openPortfolioViewer(card);
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (viewerOpen) {
+            closePortfolioViewer();
+          } else {
+            openPortfolioViewer(card);
+          }
+        }
+      });
+    });
+
+    portfolioViewer.addEventListener('click', closePortfolioViewer);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePortfolioViewer();
+    });
   </script>
 
 </body>
-            </html>
+  </html>
