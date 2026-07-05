@@ -463,15 +463,19 @@
       inset:0;
       background:rgba(3,5,10,0);
       opacity:0;
-      transition:opacity .56s cubic-bezier(.22,1,.36,1),background-color .56s cubic-bezier(.22,1,.36,1);
+      transition:opacity .56s cubic-bezier(.22,1,.36,1),background-color .56s cubic-bezier(.22,1,.36,1),backdrop-filter .46s cubic-bezier(.22,1,.36,1),-webkit-backdrop-filter .46s cubic-bezier(.22,1,.36,1);
     }
     .portfolio-viewer.show .portfolio-viewer-backdrop{
       opacity:1;
       background:rgba(3,5,10,.84);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
     }
     .portfolio-viewer.closing .portfolio-viewer-backdrop{
       opacity:0;
       background:rgba(3,5,10,0);
+      backdrop-filter:blur(0px);
+      -webkit-backdrop-filter:blur(0px);
     }
     .portfolio-viewer-stage{
       position:relative;
