@@ -58,15 +58,15 @@
     body::after{width:280px;height:280px;right:-90px;bottom:-90px;background:rgba(79,198,255,.08)}
     a{color:inherit;text-decoration:none}
     button,input{font:inherit}
-.app{
-  position:relative;
-  z-index:1;
-  width:100%;
-  max-width:1067px;
-  min-height:100vh;
-  margin:0 auto;
-  padding:18px 18px 28px;
-}
+    .app{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:1067px;
+      min-height:100vh;
+      margin:0 auto;
+      padding:18px 18px 28px;
+    }
 
     .glass,
     .hero,
@@ -361,29 +361,30 @@
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:10px
     }
-.portfolio-card,
-.service-card,
-.price-card,
-.contact-card,
-.faq-item,
-.copy-btn,
-.mini-btn,
-.faq-q,
-.tab{
-    position:relative;
-    overflow:hidden;
-    isolation:isolate;
-    -webkit-tap-highlight-color:transparent;
-}
+    .portfolio-card,
+    .service-card,
+    .price-card,
+    .contact-card,
+    .faq-item,
+    .copy-btn,
+    .mini-btn,
+    .faq-q,
+    .tab{
+        position:relative;
+        overflow:hidden;
+        isolation:isolate;
+        -webkit-tap-highlight-color:transparent;
+    }
 
-.btn,
-.tab,
-.pay-panel,
-.toast{
-    transform:translateZ(0);
-    backface-visibility:hidden;
-    will-change:transform,opacity;
-}
+    .btn,
+    .tab,
+    .pay-panel,
+    .toast{
+        transform:translateZ(0);
+        backface-visibility:hidden;
+        will-change:transform,opacity;
+    }
+    /* portfolio */
     .portfolio-card{
       border-radius:20px;
       background:rgba(255,255,255,.03);
@@ -430,107 +431,106 @@
       z-index:1
     }
     
-.portfolio-card:focus-visible{
-  outline:2px solid rgba(127,195,255,.4);
-  outline-offset:2px;
-}
-.portfolio-card.zoomed{
-  z-index:60;
-}
+    .portfolio-card:focus-visible{
+      outline:2px solid rgba(127,195,255,.4);
+      outline-offset:2px;
+    }
+    .portfolio-card.zoomed{
+      z-index:60;
+    }
 
-.portfolio-viewer{
-  position:fixed;
-  inset:0;
-  z-index:70;
-  display:grid;
-  place-items:center;
-  opacity:0;
-  pointer-events:none;
-  background:rgba(3,5,10,0);
-  transition:opacity .28s ease;
-  isolation:isolate;
-  overflow:hidden;
-  overscroll-behavior:contain;
-  touch-action:none;
-}
-.portfolio-viewer.show{
-  opacity:1;
-  pointer-events:auto;
-}
-.portfolio-viewer-backdrop{
-  position:absolute;
-  inset:0;
-  background:rgba(3,5,10,0);
-  opacity:0;
-  transition:opacity .56s cubic-bezier(.22,1,.36,1),background-color .56s cubic-bezier(.22,1,.36,1);
-}
-.portfolio-viewer.show .portfolio-viewer-backdrop{
-  opacity:1;
-  background:rgba(3,5,10,.84);
-}
-.portfolio-viewer.closing .portfolio-viewer-backdrop{
-  opacity:0;
-  background:rgba(3,5,10,0);
-}
-.portfolio-viewer-stage{
-  position:relative;
-  width:100%;
-  height:100%;
-  display:grid;
-  place-items:center;
-  opacity:0;
-  transform:scale(.985);
-  transform-origin:center center;
-  transition:opacity .28s ease,transform .50s cubic-bezier(.22,1,.36,1);
-}
-.portfolio-viewer.show .portfolio-viewer-stage{
-  opacity:1;
-  transform:scale(1);
-}
-.portfolio-viewer.closing .portfolio-viewer-stage{
-  opacity:0;
-  transform:scale(.985);
-}
-.portfolio-viewer img{
-  position:fixed;
-  left:var(--viewer-start-left, 50vw);
-  top:var(--viewer-start-top, 50vh);
-  width:var(--viewer-start-width, 0px);
-  height:var(--viewer-start-height, 0px);
-  transform:translate(0,0) scale(1);
-  transform-origin:top left;
-  object-fit:contain;
-  background:#0b0f16;
-  border-radius:var(--viewer-start-radius, 18px);
-  box-shadow:0 14px 38px rgba(0,0,0,.24);
-  opacity:0;
-  transition:
-    left .52s cubic-bezier(.22,1,.36,1),
-    top .52s cubic-bezier(.22,1,.36,1),
-    width .52s cubic-bezier(.22,1,.36,1),
-    height .52s cubic-bezier(.22,1,.36,1),
-    border-radius .48s cubic-bezier(.22,1,.36,1),
-    box-shadow .52s cubic-bezier(.22,1,.36,1),
-    opacity .10s linear,
-    background-color .22s ease;
-  touch-action:manipulation;
-  -webkit-tap-highlight-color:transparent;
-  user-select:none;
-  -webkit-user-drag:none;
-  will-change:transform,left,top,width,height;
-}
-.portfolio-viewer.show.animate img{
-  opacity:1;
-  left:var(--viewer-target-left);
-  top:var(--viewer-target-top);
-  width:var(--viewer-target-width);
-  height:var(--viewer-target-height);
-  border-radius:22px;
-  box-shadow:0 28px 80px rgba(0,0,0,.58);
-}
+    .portfolio-viewer{
+      position:fixed;
+      inset:0;
+      z-index:70;
+      display:grid;
+      place-items:center;
+      opacity:0;
+      pointer-events:none;
+      background:rgba(3,5,10,0);
+      transition:opacity .28s ease;
+      isolation:isolate;
+      overflow:hidden;
+      overscroll-behavior:contain;
+      touch-action:none;
+    }
+    .portfolio-viewer.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .portfolio-viewer-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(3,5,10,0);
+      opacity:0;
+      transition:opacity .56s cubic-bezier(.22,1,.36,1),background-color .56s cubic-bezier(.22,1,.36,1);
+    }
+    .portfolio-viewer.show .portfolio-viewer-backdrop{
+      opacity:1;
+      background:rgba(3,5,10,.84);
+    }
+    .portfolio-viewer.closing .portfolio-viewer-backdrop{
+      opacity:0;
+      background:rgba(3,5,10,0);
+    }
+    .portfolio-viewer-stage{
+      position:relative;
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      opacity:0;
+      transform:scale(.985);
+      transform-origin:center center;
+      transition:opacity .28s ease,transform .50s cubic-bezier(.22,1,.36,1);
+    }
+    .portfolio-viewer.show .portfolio-viewer-stage{
+      opacity:1;
+      transform:scale(1);
+    }
+    .portfolio-viewer.closing .portfolio-viewer-stage{
+      opacity:0;
+      transform:scale(.985);
+    }
+    .portfolio-viewer img{
+      position:fixed;
+      left:var(--viewer-start-left, 50vw);
+      top:var(--viewer-start-top, 50vh);
+      width:var(--viewer-start-width, 0px);
+      height:var(--viewer-start-height, 0px);
+      transform:translate(0,0) scale(1);
+      transform-origin:top left;
+      object-fit:contain;
+      background:#0b0f16;
+      border-radius:var(--viewer-start-radius, 18px);
+      box-shadow:0 14px 38px rgba(0,0,0,.24);
+      opacity:0;
+      transition:
+        left .52s cubic-bezier(.22,1,.36,1),
+        top .52s cubic-bezier(.22,1,.36,1),
+        width .52s cubic-bezier(.22,1,.36,1),
+        height .52s cubic-bezier(.22,1,.36,1),
+        border-radius .48s cubic-bezier(.22,1,.36,1),
+        box-shadow .52s cubic-bezier(.22,1,.36,1),
+        opacity .10s linear,
+        background-color .22s ease;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
+      user-select:none;
+      -webkit-user-drag:none;
+      will-change:transform,left,top,width,height;
+    }
+    .portfolio-viewer.show.animate img{
+      opacity:1;
+      left:var(--viewer-target-left);
+      top:var(--viewer-target-top);
+      width:var(--viewer-target-width);
+      height:var(--viewer-target-height);
+      border-radius:22px;
+      box-shadow:0 28px 80px rgba(0,0,0,.58);
+    }
 
-.portfolio-fallback{
-
+    .portfolio-fallback{
       position:absolute;
       inset:0;
       z-index:0;
@@ -629,7 +629,7 @@
     }
     .feat::before{content:"•";color:var(--accent-2);margin-top:-1px}
 
-
+    /* pay tab */
     .pay-tabs{
       position:relative;
       display:grid;
@@ -715,6 +715,7 @@
       animation:pulse-halo .62s cubic-bezier(.22,1,.36,1) both;
     }
 
+    /* Payment */
     .pay-stage{
       display:grid;
       gap:12px;
@@ -777,119 +778,110 @@
       to{opacity:1; transform:translateY(0) scale(1); filter:blur(0);}
     }
 
-.pay-content{
-  display:grid;
-  gap:10px;
-}
+    .pay-content{
+      display:grid;
+      gap:10px;
+    }
 
-.pay-content > *{
-  opacity:0;
-  transform:translateY(12px);
-}
+    .pay-content > *{
+      opacity:0;
+      transform:translateY(12px);
+    }
 
-.pay-panel.active .pay-content > *{
-  animation:panel-in .62s cubic-bezier(.22,1,.36,1) both;
-}
+    .pay-panel.active .pay-content > *{
+      animation:panel-in .62s cubic-bezier(.22,1,.36,1) both;
+    }
+    
+    /* Title */
+    .pay-panel.active .pay-content > *:nth-child(1){
+      animation-delay:.04s;
+    }
 
-/* Title */
-.pay-panel.active .pay-content > *:nth-child(1){
-  animation-delay:.04s;
-}
+    /* Desc */
+    .pay-panel.active .pay-content > *:nth-child(2){
+      animation-delay:.16s;
+    }
 
-/* Desc */
-.pay-panel.active .pay-content > *:nth-child(2){
-  animation-delay:.16s;
-}
+    /* Copy Row */
+    .pay-panel.active .pay-content > *:nth-child(3){
+      animation-delay:.18s;
+    }
 
-/* Copy Row */
-.pay-panel.active .pay-content > *:nth-child(3){
-  animation-delay:.18s;
-}
+    .copy-row > *{
+      opacity:0;
+      transform:translateY(10px);
+    }
 
-.copy-row > *{
-  opacity:0;
-  transform:translateY(10px);
-}
+    .pay-panel.active .copy-row > *{
+      animation:panel-in .52s cubic-bezier(.22,1,.36,1) both;
+    }
 
-.pay-panel.active .copy-row > *{
-  animation:panel-in .52s cubic-bezier(.22,1,.36,1) both;
-}
+    /* Nomor */
+    .pay-panel.active .copy-row > *:nth-child(1){
+      animation-delay:.22s;
+    }
 
-/* Nomor */
-.pay-panel.active .copy-row > *:nth-child(1){
-  animation-delay:.22s;
-}
+    /* Tombol Copy */
+    .pay-panel.active .copy-row > *:nth-child(2){
+      animation-delay:.36s;
+    }
 
-/* Tombol Copy */
-.pay-panel.active .copy-row > *:nth-child(2){
-  animation-delay:.36s;
-}
-
-.pay-panel.leaving .pay-content > *,
-.pay-panel.leaving .copy-row > *{
-  animation:panel-out .22s ease both;
-}
+    .pay-panel.leaving .pay-content > *,
+    .pay-panel.leaving .copy-row > *{
+      animation:panel-out .22s ease both;
+    }
     .pay-title{font-size:16px;font-weight:800;margin-bottom:-5px}
     .pay-desc{color:var(--soft);font-size:12px;line-height:1.6}
     .qris-card{display:grid;gap:10px}
-.pay-panel.active .qris-card > *{
-  animation:panel-in .62s cubic-bezier(.16,1,.3,1) both;
-}
+    .pay-panel.active .qris-card > *{
+      animation:panel-in .62s cubic-bezier(.16,1,.3,1) both;
+    }
 
-.pay-panel.leaving .qris-card > *{
-  animation:panel-out .22s ease both;
-}
+    .pay-panel.leaving .qris-card > *{
+      animation:panel-out .22s ease both;
+    }
     .qris-card > *:nth-child(1){animation-delay:.04s}
     .qris-card > *:nth-child(2){animation-delay:.12s}
     .qris-card > *:nth-child(3){animation-delay:.21s}
-/* QRIS card muncul satu-satu */
 
-.pay-panel.active .qris-card > *{
-    opacity:0;
-    animation:panel-in .62s cubic-bezier(.16,1,.3,1) forwards;
-}
+    /* QRIS card muncul satu-satu */
+    .pay-panel.active .qris-card > *{
+        opacity:0;
+        animation:panel-in .62s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    .pay-panel.active .qris-card > :nth-child(1){
+        animation-delay:.05s;
+    }
+    .pay-panel.active .qris-card > :nth-child(2){
+        animation-delay:.18s;
+    }
+    .pay-panel.active .qris-card > :nth-child(3){
+        animation-delay:.35s;
+    }
 
-.pay-panel.active .qris-card > :nth-child(1){
-    animation-delay:.05s;
-}
+    /* isi Contact First */
+    .pay-panel.active .contact-first-card > *{
+        opacity:0;
+        animation:panel-in .55s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    .pay-panel.active .contact-first-card > :nth-child(1){
+        animation-delay:.60s;
+    }
+    .pay-panel.active .contact-first-card > :nth-child(2){
+        animation-delay:.72s;
+    }
+    .pay-panel.active .contact-first-card > :nth-child(3){
+        animation-delay:.84s;
+    }
+    .pay-panel.active .contact-first-card > :nth-child(4){
+        animation-delay:.98s;
+    }
 
-.pay-panel.active .qris-card > :nth-child(2){
-    animation-delay:.18s;
-}
-
-.pay-panel.active .qris-card > :nth-child(3){
-    animation-delay:.35s;
-}
-
-/* isi Contact First */
-
-.pay-panel.active .contact-first-card > *{
-    opacity:0;
-    animation:panel-in .55s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-.pay-panel.active .contact-first-card > :nth-child(1){
-    animation-delay:.60s;
-}
-
-.pay-panel.active .contact-first-card > :nth-child(2){
-    animation-delay:.72s;
-}
-
-.pay-panel.active .contact-first-card > :nth-child(3){
-    animation-delay:.84s;
-}
-
-.pay-panel.active .contact-first-card > :nth-child(4){
-    animation-delay:.98s;
-}
-
-/* animasi keluar */
-
-.pay-panel.leaving .qris-card > *,
-.pay-panel.leaving .contact-first-card > *{
-    animation:panel-out .25s ease both;
-}
+    /* animasi keluar */
+    .pay-panel.leaving .qris-card > *,
+    .pay-panel.leaving .contact-first-card > *{
+        animation:panel-out .25s ease both;
+    }
 
     .qris-frame{
       border-radius:20px;
@@ -966,10 +958,26 @@
       color:#08111b;
       font-weight:800;
       cursor:pointer;
-      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      transition:transform .38s cubic-bezier(.18,.88,.22,1), background .18s ease;
       min-width:74px;
+      transform:translateZ(0);
+      backface-visibility:hidden;
+      will-change:transform;
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+      touch-action:manipulation;
     }
-    .copy-btn:active{transform:scale(.972)}
+    .copy-btn > *{
+      position:relative;
+      z-index:1;
+      display:inline-block;
+    }
+    .copy-btn:active{transform:scale(.988)}
+    .copy-btn::after{
+      content:none;
+      display:none;
+    }
 
     .hero-panel{
       display:grid;
@@ -1066,71 +1074,72 @@
     }
     .mini-btn:active{transform:scale(.972)}
 
+    /* FAQ */
     .faq{display:grid;gap:10px}
-.faq-item{
-  border-radius:18px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-  transition:border-color .22s ease, background .22s ease, box-shadow .22s ease, transform .18s ease;
-  overflow:hidden;
-  will-change:transform,opacity;
-}
-.faq-item:active{transform:scale(.995)}
-.faq-q{
-  width:100%;
-  background:transparent;
-  color:var(--text);
-  border:0;
-  padding:14px;
-  text-align:left;
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  cursor:pointer;
-  font-weight:700;
-  font-size:13px;
-  transition:background .18s ease, color .18s ease;
-  -webkit-user-select:none;
-  user-select:none;
-  position:relative;
-  overflow:hidden;
-}
-.faq-q::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
-  transform:translateX(-170%);
-  opacity:0;
-  pointer-events:none;
-  z-index:0;
-}
-.faq-q > *{position:relative; z-index:1}
-.faq-a{
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transform:translateY(-6px);
-  color:var(--soft);
-  padding:0 14px;
-  font-size:12px;
-  line-height:1.7;
-  transition:max-height .64s cubic-bezier(.36,1,.22,1), opacity .34s ease, transform .64s cubic-bezier(.36,1,.22,1), padding .64s cubic-bezier(.36,1,.22,1);
-  will-change:max-height,opacity,transform;
-}
-.faq-item.open .faq-a{
-  max-height:180px;
-  opacity:1;
-  transform:translateY(0);
-  padding:0 14px 14px;
-}
-.faq-item.open{
-  border-color:rgba(93,166,232,.22);
-  box-shadow:0 10px 26px rgba(93,166,232,.06);
-}
+    .faq-item{
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      transition:border-color .22s ease, background .22s ease, box-shadow .22s ease, transform .18s ease;
+      overflow:hidden;
+      will-change:transform,opacity;
+    }
+    .faq-item:active{transform:scale(.995)}
+    .faq-q{
+      width:100%;
+      background:transparent;
+      color:var(--text);
+      border:0;
+      padding:14px;
+      text-align:left;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      cursor:pointer;
+      font-weight:700;
+      font-size:13px;
+      transition:background .18s ease, color .18s ease;
+      -webkit-user-select:none;
+      user-select:none;
+      position:relative;
+      overflow:hidden;
+    }
+    .faq-q::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+      transform:translateX(-170%);
+      opacity:0;
+      pointer-events:none;
+      z-index:0;
+    }
+    .faq-q > *{position:relative; z-index:1}
+    .faq-a{
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transform:translateY(-6px);
+      color:var(--soft);
+      padding:0 14px;
+      font-size:12px;
+      line-height:1.7;
+      transition:max-height .64s cubic-bezier(.36,1,.22,1), opacity .34s ease, transform .64s cubic-bezier(.36,1,.22,1), padding .64s cubic-bezier(.36,1,.22,1);
+      will-change:max-height,opacity,transform;
+    }
+    .faq-item.open .faq-a{
+      max-height:180px;
+      opacity:1;
+      transform:translateY(0);
+      padding:0 14px 14px;
+    }
+    .faq-item.open{
+      border-color:rgba(93,166,232,.22);
+      box-shadow:0 10px 26px rgba(93,166,232,.06);
+    }
 
-        .footer{
+    .footer{
       padding:16px;
       margin-top:2px;
       margin-bottom:24px;
@@ -1178,7 +1187,7 @@
     .toast span{display:block;font-size:12px;color:var(--soft)}
 
     .tap-press{
-      animation:press-squish .54s cubic-bezier(.22,1,.36,1) both !important;
+      animation:press-squish .64s cubic-bezier(.22,1,.36,1) both !important;
     }
     .sweep-on::before{
       opacity:1;
@@ -1192,9 +1201,10 @@
     @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
     @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
     @keyframes press-squish{
       0%{transform:scale(1)}
-      32%{transform:scale(.968)}
+      32%{transform:scale(.958)}
       68%{transform:scale(1.01)}
       84%{transform:scale(.997)}
       100%{transform:scale(1)}
@@ -1212,8 +1222,8 @@
     }
     @keyframes tab-press{
       0%{transform:scale(1)}
-      34%{transform:scale(.968)}
-      72%{transform:scale(1.01)}
+      34%{transform:scale(.948)}
+      72%{transform:scale(1.03)}
       100%{transform:scale(1)}
     }
     @keyframes tab-sweep{
@@ -1227,43 +1237,43 @@
       24%{opacity:.76}
       100%{transform:translateX(-170%);opacity:0}
     }
-@keyframes panel-in{
-  0%{
-    opacity:0;
-    transform:translateY(18px) scale(.97);
-    filter:blur(3px);
-  }
+    @keyframes panel-in{
+      0%{
+        opacity:0;
+        transform:translateY(18px) scale(.97);
+        filter:blur(3px);
+      }
 
-  60%{
-    opacity:1;
-  }
+      60%{
+        opacity:1;
+      }
 
-  100%{
-    opacity:1;
-    transform:translateY(0) scale(1);
-    filter:blur(0);
-  }
-}
-@keyframes panel-out{
-  from{
-    opacity:1;
-    transform:translateY(0) scale(1);
-    filter:blur(0);
-  }
-  to{
-    opacity:0;
-    transform:translateY(-8px) scale(.985);
-    filter:blur(1px);
-  }
-}
+      100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+      }
+    }
+    @keyframes panel-out{
+      from{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+      }
+      to{
+        opacity:0;
+        transform:translateY(-8px) scale(.985);
+        filter:blur(1px);
+      }
+    }
 
-@media (min-width:760px){
-  .app{max-width:1067px}
-  .brand-name{font-size:40px}
-  .hero-copy h1{font-size:28px}
-  .portfolio-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-}
+    @media (min-width:760px){
+      .app{max-width:1067px}
+      .brand-name{font-size:40px}
+      .hero-copy h1{font-size:28px}
+      .portfolio-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
 
     @media (max-width:420px){
       .app{padding:14px 14px 24px}
@@ -1297,6 +1307,7 @@
       </div>
     </header>
 
+
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
@@ -1329,6 +1340,7 @@
       </div>
     </section>
 
+
     <section class="section" id="portfolio">
       <h2>Portofolio</h2>
       <div class="section-lead">Beberapa hasil/contoh Edit Foto di Faylyn, untuk edit video bisa minta ke contact saya langsung aja yaa.</div>
@@ -1338,7 +1350,7 @@
             <div class="portfolio-fallback">
               <span class="portfolio-fallback-chip">Preview</span>
             </div>
-            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/portfolio-poster.png" data-full="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/poster.webp" alt="poster faylyn"/>
+            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/assets@main/portfolio-poster.png" alt="portfolio 1" data-full="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/poster.webp" alt="poster faylyn"/>
           </div>
           <figcaption class="portfolio-body">
             <h3>Poster Promosi</h3>
@@ -1377,7 +1389,7 @@
             <div class="portfolio-fallback">
               <span class="portfolio-fallback-chip">Preview</span>
             </div>
-            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/portfolio-preset.png" data-full="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/preset-edit.webp" alt="preset faylyn"/>
+            <img src="https://cdn.jsdelivr.net/gh/Faylyn-edits/assets@main/portfolio-preset.png" alt="portfolio 1" data-full="https://cdn.jsdelivr.net/gh/Faylyn-edits/asset@main/preset-edit.webp" alt="preset faylyn"/>
           </div>
           <figcaption class="portfolio-body">
             <h3>Spek Akun Game</h3>
@@ -1386,6 +1398,7 @@
         </figure>
       </div>
     </section>
+
 
     <section class="section">
       <h2>Services</h2>
@@ -1406,6 +1419,7 @@
         </div>
       </div>
     </section>
+
 
     <section class="section">
       <h2>Pricing</h2>
@@ -1462,6 +1476,7 @@
       </div>
     </section>
 
+
     <section class="section" id="payment">
       <h2>Payment</h2>
       <div class="pay-tabs">
@@ -1496,7 +1511,7 @@
           <div class="pay-desc">Transfer melalui nomor dana</div>
           <div class="copy-row">
             <div class="copy-box" data-copy="0831-8805-0672">0831-8805-0672</div>
-            <button class="copy-btn" data-target="0831-8805-0672">Copy</button>
+            <button class="copy-btn" data-target="0831-8805-0672"><span class="copy-label">Copy</span></button>
           </div>
         </div>
       </div>
@@ -1507,7 +1522,7 @@
           <div class="pay-desc">Transfer melalui nomor gopay</div>
           <div class="copy-row">
             <div class="copy-box" data-copy="0831-8805-0672">0831-8805-0672</div>
-            <button class="copy-btn" data-target="0831-8805-0672">Copy</button>
+            <button class="copy-btn" data-target="0831-8805-0672"><span class="copy-label">Copy</span></button>
           </div>
         </div>
       </div>
@@ -1539,6 +1554,7 @@
         </div>
       </div>
     </section>
+
 
     <section class="section">
       <h2>FAQ</h2>
@@ -1584,7 +1600,6 @@
     </div>
   </div>
 
-
   <script>
     const tabs = document.querySelectorAll('.tab');
     const panels = {
@@ -1592,217 +1607,212 @@
       dana: document.getElementById('panel-dana'),
       gopay: document.getElementById('panel-gopay')
     };
-
     
-const toast = document.getElementById('toast');
-const toastTitle = document.getElementById('toastTitle');
-const toastText = document.getElementById('toastText');
-const portfolioViewer = document.getElementById('portfolioViewer');
-const portfolioViewerBackdrop = document.getElementById('portfolioViewerBackdrop');
-const portfolioViewerImg = document.getElementById('portfolioViewerImg');
-const portfolioCards = document.querySelectorAll('.portfolio-card');
-let toastTimer;
-let activeTabKey = 'qris';
-let viewerOpen = false;
-let viewerBusy = false;
-let scrollLockY = 0;
-let viewerState = null;
-let viewerCloseTimer = null;
-let viewerSession = 0;
-function showToast(title, text) {
-      toastTitle.textContent = title;
-      toastText.textContent = text;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastText = document.getElementById('toastText');
+    const portfolioViewer = document.getElementById('portfolioViewer');
+    const portfolioViewerBackdrop = document.getElementById('portfolioViewerBackdrop');
+    const portfolioViewerImg = document.getElementById('portfolioViewerImg');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    let toastTimer;
+    let activeTabKey = 'qris';
+    let viewerOpen = false;
+    let viewerBusy = false;
+    let scrollLockY = 0;
+    let viewerState = null;
+    let viewerCloseTimer = null;
+    let viewerSession = 0;
+    function showToast(title, text) {
+          toastTitle.textContent = title;
+          toastText.textContent = text;
+          toast.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+    
+    function getViewportBox() {
+      const vv = window.visualViewport;
+      return {
+        width: vv?.width || window.innerWidth,
+        height: vv?.height || window.innerHeight,
+        left: vv?.offsetLeft || 0,
+        top: vv?.offsetTop || 0
+      };
     }
 
-    
-function getViewportBox() {
-  const vv = window.visualViewport;
-  return {
-    width: vv?.width || window.innerWidth,
-    height: vv?.height || window.innerHeight,
-    left: vv?.offsetLeft || 0,
-    top: vv?.offsetTop || 0
-  };
-}
+    function getCoverTarget(rect, ratio) {
+      const margin = 18;
+      const vp = getViewportBox();
+      const maxW = Math.min(vp.width - margin * 2, 1280);
+      const maxH = Math.min(vp.height - margin * 2, vp.height * 0.88);
+      let width = maxW;
+      let height = width / ratio;
 
-function getCoverTarget(rect, ratio) {
-  const margin = 18;
-  const vp = getViewportBox();
-  const maxW = Math.min(vp.width - margin * 2, 1280);
-  const maxH = Math.min(vp.height - margin * 2, vp.height * 0.88);
-  let width = maxW;
-  let height = width / ratio;
+      if (height > maxH) {
+        height = maxH;
+        width = height * ratio;
+      }
 
-  if (height > maxH) {
-    height = maxH;
-    width = height * ratio;
-  }
+      const left = vp.left + (vp.width - width) / 2;
+      const top = vp.top + (vp.height - height) / 2;
 
-  const left = vp.left + (vp.width - width) / 2;
-  const top = vp.top + (vp.height - height) / 2;
+      return { left, top, width, height };
+    }
 
-  return { left, top, width, height };
-}
-
-
-function loadImage(src) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.decoding = 'async';
-    img.src = src;
-    if (img.decode) {
-      img.decode().then(() => resolve(img)).catch(() => {
-        img.onload = () => resolve(img);
-        img.onerror = reject;
+    function loadImage(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = src;
+        if (img.decode) {
+          img.decode().then(() => resolve(img)).catch(() => {
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+          });
+        } else {
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+        }
       });
-    } else {
-      img.onload = () => resolve(img);
-      img.onerror = reject;
     }
-  });
-}
 
-function lockPageScroll() {
-  scrollLockY = window.scrollY || window.pageYOffset || 0;
-  document.documentElement.style.overflow = 'hidden';
-  document.body.style.overflow = 'hidden';
-  document.documentElement.style.scrollBehavior = 'auto';
-}
+    function lockPageScroll() {
+      scrollLockY = window.scrollY || window.pageYOffset || 0;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.scrollBehavior = 'auto';
+    }
 
-function unlockPageScroll() {
-  document.documentElement.style.overflow = '';
-  document.body.style.overflow = '';
-  document.documentElement.style.scrollBehavior = '';
-  window.scrollTo(0, scrollLockY);
-}
+    function unlockPageScroll() {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.scrollBehavior = '';
+      window.scrollTo(0, scrollLockY);
+    }
 
+    async function openPortfolioViewer(card) {
+      const img = card?.querySelector('.portfolio-media img');
+      if (!img || viewerOpen || viewerBusy) return;
 
-async function openPortfolioViewer(card) {
-  const img = card?.querySelector('.portfolio-media img');
-  if (!img || viewerOpen || viewerBusy) return;
+      viewerBusy = true;
+      const session = ++viewerSession;
 
-  viewerBusy = true;
-  const session = ++viewerSession;
+      clearTimeout(viewerCloseTimer);
+      viewerCloseTimer = null;
 
-  clearTimeout(viewerCloseTimer);
-  viewerCloseTimer = null;
+      const fullSrc = img.dataset.full || img.src;
+      const altText = img.alt || card.querySelector('.portfolio-body h3')?.textContent || 'Portfolio image';
+      const rect = img.getBoundingClientRect();
+      const radius = getComputedStyle(img).borderRadius || '18px';
 
-  const fullSrc = img.dataset.full || img.src;
-  const altText = img.alt || card.querySelector('.portfolio-body h3')?.textContent || 'Portfolio image';
-  const rect = img.getBoundingClientRect();
-  const radius = getComputedStyle(img).borderRadius || '18px';
+      let loadedImg = null;
+      try {
+        loadedImg = await loadImage(fullSrc);
+      } catch {
+        // tetap coba tampilkan kalau preloader gagal
+      }
 
-  let loadedImg = null;
-  try {
-    loadedImg = await loadImage(fullSrc);
-  } catch {
-    // tetap coba tampilkan kalau preloader gagal
-  }
+      if (session !== viewerSession) {
+        viewerBusy = false;
+        return;
+      }
 
-  if (session !== viewerSession) {
-    viewerBusy = false;
-    return;
-  }
+      const ratioSourceWidth = loadedImg?.naturalWidth || img.naturalWidth || rect.width || 1;
+      const ratioSourceHeight = loadedImg?.naturalHeight || img.naturalHeight || rect.height || 1;
+      const ratioRaw = ratioSourceWidth / ratioSourceHeight;
+      const ratio = Number.isFinite(ratioRaw) && ratioRaw > 0 ? ratioRaw : 1;
+      const target = getCoverTarget(rect, ratio);
 
-  const ratioSourceWidth = loadedImg?.naturalWidth || img.naturalWidth || rect.width || 1;
-  const ratioSourceHeight = loadedImg?.naturalHeight || img.naturalHeight || rect.height || 1;
-  const ratioRaw = ratioSourceWidth / ratioSourceHeight;
-  const ratio = Number.isFinite(ratioRaw) && ratioRaw > 0 ? ratioRaw : 1;
-  const target = getCoverTarget(rect, ratio);
+      viewerState = {
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+        radius,
+        target
+      };
 
-  viewerState = {
-    left: rect.left,
-    top: rect.top,
-    width: rect.width,
-    height: rect.height,
-    radius,
-    target
-  };
+      portfolioViewerImg.alt = altText;
 
-  portfolioViewerImg.alt = altText;
+      // Hard reset ke posisi thumbnail agar tidak mewarisi state open sebelumnya.
+      portfolioViewer.classList.remove('animate');
+      portfolioViewerImg.style.transition = 'none';
+      portfolioViewerImg.style.setProperty('--viewer-start-left', `${rect.left}px`);
+      portfolioViewerImg.style.setProperty('--viewer-start-top', `${rect.top}px`);
+      portfolioViewerImg.style.setProperty('--viewer-start-width', `${rect.width}px`);
+      portfolioViewerImg.style.setProperty('--viewer-start-height', `${rect.height}px`);
+      portfolioViewerImg.style.setProperty('--viewer-start-radius', radius);
 
-  // Hard reset ke posisi thumbnail agar tidak mewarisi state open sebelumnya.
-  portfolioViewer.classList.remove('animate');
-  portfolioViewerImg.style.transition = 'none';
-  portfolioViewerImg.style.setProperty('--viewer-start-left', `${rect.left}px`);
-  portfolioViewerImg.style.setProperty('--viewer-start-top', `${rect.top}px`);
-  portfolioViewerImg.style.setProperty('--viewer-start-width', `${rect.width}px`);
-  portfolioViewerImg.style.setProperty('--viewer-start-height', `${rect.height}px`);
-  portfolioViewerImg.style.setProperty('--viewer-start-radius', radius);
+      portfolioViewerImg.style.setProperty('--viewer-target-left', `${target.left}px`);
+      portfolioViewerImg.style.setProperty('--viewer-target-top', `${target.top}px`);
+      portfolioViewerImg.style.setProperty('--viewer-target-width', `${target.width}px`);
+      portfolioViewerImg.style.setProperty('--viewer-target-height', `${target.height}px`);
 
-  portfolioViewerImg.style.setProperty('--viewer-target-left', `${target.left}px`);
-  portfolioViewerImg.style.setProperty('--viewer-target-top', `${target.top}px`);
-  portfolioViewerImg.style.setProperty('--viewer-target-width', `${target.width}px`);
-  portfolioViewerImg.style.setProperty('--viewer-target-height', `${target.height}px`);
+      portfolioViewerImg.src = fullSrc;
+      portfolioViewerImg.style.opacity = '0';
 
-  portfolioViewerImg.src = fullSrc;
-  portfolioViewerImg.style.opacity = '0';
+      lockPageScroll();
+      card.classList.add('zoomed');
+      portfolioViewer.setAttribute('aria-hidden', 'false');
+      portfolioViewer.classList.remove('closing');
+      portfolioViewer.classList.add('show');
+      viewerOpen = true;
 
-  lockPageScroll();
-  card.classList.add('zoomed');
-  portfolioViewer.setAttribute('aria-hidden', 'false');
-  portfolioViewer.classList.remove('closing');
-  portfolioViewer.classList.add('show');
-  viewerOpen = true;
+      // Baca posisi awal lebih dulu, baru jalankan expand ke tengah.
+      void portfolioViewerImg.offsetWidth;
 
-  // Baca posisi awal lebih dulu, baru jalankan expand ke tengah.
-  void portfolioViewerImg.offsetWidth;
+      requestAnimationFrame(() => {
+        if (session !== viewerSession) return;
+        portfolioViewerImg.style.transition = '';
+        portfolioViewer.classList.add('animate');
+        portfolioViewerImg.style.opacity = '1';
+      });
 
-  requestAnimationFrame(() => {
-    if (session !== viewerSession) return;
-    portfolioViewerImg.style.transition = '';
-    portfolioViewer.classList.add('animate');
-    portfolioViewerImg.style.opacity = '1';
-  });
+      viewerBusy = false;
+    }
 
-  viewerBusy = false;
-}
+    function closePortfolioViewer() {
+      if ((!viewerOpen && !viewerBusy) || !viewerState) return;
+      clearTimeout(viewerCloseTimer);
 
-function closePortfolioViewer() {
-  if ((!viewerOpen && !viewerBusy) || !viewerState) return;
-  clearTimeout(viewerCloseTimer);
+      const session = ++viewerSession;
+      const { left, top, width, height, radius } = viewerState;
+      const returnCard = document.querySelector('.portfolio-card.zoomed');
 
-  const session = ++viewerSession;
-  const { left, top, width, height, radius } = viewerState;
-  const returnCard = document.querySelector('.portfolio-card.zoomed');
+      viewerOpen = false;
+      viewerBusy = false;
 
-  viewerOpen = false;
-  viewerBusy = false;
+      portfolioViewer.classList.remove('animate');
+      portfolioViewer.classList.add('closing');
 
-  portfolioViewer.classList.remove('animate');
-  portfolioViewer.classList.add('closing');
+      portfolioViewerImg.style.setProperty('--viewer-start-left', `${left}px`);
+      portfolioViewerImg.style.setProperty('--viewer-start-top', `${top}px`);
+      portfolioViewerImg.style.setProperty('--viewer-start-width', `${width}px`);
+      portfolioViewerImg.style.setProperty('--viewer-start-height', `${height}px`);
+      portfolioViewerImg.style.setProperty('--viewer-start-radius', radius);
 
-  portfolioViewerImg.style.setProperty('--viewer-start-left', `${left}px`);
-  portfolioViewerImg.style.setProperty('--viewer-start-top', `${top}px`);
-  portfolioViewerImg.style.setProperty('--viewer-start-width', `${width}px`);
-  portfolioViewerImg.style.setProperty('--viewer-start-height', `${height}px`);
-  portfolioViewerImg.style.setProperty('--viewer-start-radius', radius);
+      if (returnCard) returnCard.classList.remove('zoomed');
 
-  if (returnCard) returnCard.classList.remove('zoomed');
+      const finishClose = () => {
+        if (session !== viewerSession) return;
+        if (!portfolioViewer.classList.contains('show')) return;
 
-  const finishClose = () => {
-    if (session !== viewerSession) return;
-    if (!portfolioViewer.classList.contains('show')) return;
+        portfolioViewer.classList.remove('show');
+        portfolioViewer.classList.remove('closing');
+        portfolioViewer.setAttribute('aria-hidden', 'true');
+        unlockPageScroll();
 
-    portfolioViewer.classList.remove('show');
-    portfolioViewer.classList.remove('closing');
-    portfolioViewer.setAttribute('aria-hidden', 'true');
-    unlockPageScroll();
+        portfolioViewerImg.removeAttribute('src');
+        portfolioViewerImg.style.opacity = '0';
+        viewerState = null;
+        viewerCloseTimer = null;
+      };
 
-    portfolioViewerImg.removeAttribute('src');
-    portfolioViewerImg.style.opacity = '0';
-    viewerState = null;
-    viewerCloseTimer = null;
-  };
+      viewerCloseTimer = setTimeout(finishClose, 380);
+    }
 
-  viewerCloseTimer = setTimeout(finishClose, 380);
-}
-
-function pressPulse(el, pressClass = 'tap-press', pulseClass = 'pulse-on') {
-
+    function pressPulse(el, pressClass = 'tap-press', pulseClass = 'pulse-on') {
 
       if (!el) return;
       el.classList.remove(pressClass, pulseClass);
@@ -1872,14 +1882,73 @@ function pressPulse(el, pressClass = 'tap-press', pulseClass = 'pulse-on') {
       });
     });
 
-    document.querySelectorAll('.btn, .copy-btn, .mini-btn, .faq-q, .portfolio-card, .service-card, .price-card, .contact-card, .hero-panel .stat, .contact-first-card, .pill').forEach(el => {
+    document.querySelectorAll('.btn, .mini-btn, .faq-q, .portfolio-card, .service-card, .price-card, .contact-card, .hero-panel .stat, .contact-first-card, .pill').forEach(el => {
       el.addEventListener('pointerdown', () => {
         if (el.classList.contains('pill')) return;
         pressPulse(el);
       }, { passive: true });
     });
 
+    const COPY_BOUNCE = [
+      {
+        transform: 'translate3d(0,0,0) scale(1)'
+      },
+      {
+        transform: 'translate3d(0,1px,0) scale(.900)',
+        offset: .24
+      },
+      {
+        transform: 'translate3d(0,1px,0) scale(.900)',
+        offset: .40
+      },
+      {
+        transform: 'translate3d(0,0,0) scale(1.022)',
+        offset: .70
+      },
+      {
+        transform: 'translate3d(0,0,0) scale(.978)',
+        offset: .86
+      },
+      {
+        transform: 'translate3d(0,0,0) scale(1)'
+      }
+    ];
+
+    const COPY_LABEL_BOUNCE = [
+      { transform: 'translateY(0)', opacity: 1 },
+      { transform: 'translateY(0)', opacity: 1, offset: .32 },
+      { transform: 'translateY(0)', opacity: 1, offset: .68 },
+      { transform: 'translateY(0)', opacity: 1 }
+    ];
+
+    function triggerCopyBounce(btn) {
+      if (!btn) return;
+      const label = btn.querySelector('.copy-label');
+
+    try {
+      btn.animate(COPY_BOUNCE, {
+        duration: 1000,
+        easing: 'cubic-bezier(.22,1,.36,1)',
+        fill: 'both'
+      });
+    } catch {}
+
+      if (label && typeof label.animate === 'function') {
+        try {
+          label.animate(COPY_LABEL_BOUNCE, {
+            duration: 1000,
+            easing: 'cubic-bezier(.22,1,.36,1)',
+            fill: 'none'
+          });
+        } catch {}
+      }
+    }
+
     document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('pointerdown', () => {
+        triggerCopyBounce(btn);
+      }, { passive: true });
+
       btn.addEventListener('click', async () => {
         const value = btn.dataset.target || '';
         try {
@@ -1927,6 +1996,5 @@ function pressPulse(el, pressClass = 'tap-press', pulseClass = 'pulse-on') {
       if (e.key === 'Escape') closePortfolioViewer();
     });
   </script>
-
 </body>
   </html>
